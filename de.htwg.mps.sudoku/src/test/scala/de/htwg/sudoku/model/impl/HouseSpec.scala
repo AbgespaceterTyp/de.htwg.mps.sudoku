@@ -2,7 +2,7 @@ package de.htwg.sudoku.model.impl
 
 import org.specs2.mutable._
 
-class HouseSpec extends SpecificationWithJUnit {
+class HouseSpec extends Specification {
 
   "A new House with zero Cells" should {
     val house = new House(Vector())

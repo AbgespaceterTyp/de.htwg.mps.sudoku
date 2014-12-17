@@ -2,7 +2,7 @@ package de.htwg.sudoku.model.impl
 
 import org.specs2.mutable._
 
-class GridSpec extends SpecificationWithJUnit {
+class GridSpec extends Specification  {
 
   "A new Grid with 1 empty Cell" should {
     val cell0 = new Cell(0)

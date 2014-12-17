@@ -5,7 +5,7 @@ import de.htwg.sudoku.model.Grid
 import scala.swing.event.Event
 import scala.swing.Publisher
 
-case class CellChanged extends Event 
+case class CellChanged() extends Event 
 case class GridSizeChanged(newSize:Int) extends Event
 
 class SudokuController(var grid: Grid) extends Publisher {

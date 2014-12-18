@@ -5,6 +5,7 @@ object L10_Monads {
   
   def isEven(x:Int) = x%2==0                      //> isEven: (x: Int)Boolean
   
+  
   for {
   	i <- 1 to 4
   	j <- 1 to i

@@ -10,4 +10,6 @@ libraryDependencies ++= Seq(
      "org.specs2" %% "specs2-core" % "2.4.14" % "test"
   )
   
+libraryDependencies += "org.specs2" % "specs2-junit_2.11" % "2.4.14"
+
 libraryDependencies += "org.scala-lang" % "scala-swing" % "2.11+"

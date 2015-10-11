@@ -1,7 +1,10 @@
 package de.htwg.sudoku.model.impl
 
 import org.specs2.mutable._
+import org.junit.runner.RunWith
+import org.specs2.runner.JUnitRunner
 
+@RunWith(classOf[JUnitRunner])
 class GridSpec extends Specification  {
 
   "A new Grid with 1 empty Cell" should {
@@ -24,7 +27,8 @@ class GridSpec extends Specification  {
       grid1.solve._2.cell(0, 0).value must be_==(1)
     }
     "be filled completely by createRandom" in {
-      grid1.createRandom(1).solved must beTrue
+      val grid2 = grid1.createRandom(1)
+      grid2.solved must beTrue
     }
     "generate a String of the form\n" +
       "+---+\n" +
@@ -34,8 +38,8 @@ class GridSpec extends Specification  {
       }
     "highlight its cell" in {
       cell0.isHighlighted must beFalse
-      grid1.highlight(1)
-      cell0.isHighlighted must beTrue
+      val grid3=grid1.highlight(1)
+      grid3.cell(0,0).isHighlighted must beTrue
     }
   }
   "A new Grid with 1 filled Cell" should {
@@ -58,7 +62,8 @@ class GridSpec extends Specification  {
       grid1.solve._2.cell(0, 0).value must be_==(1)
     }
     "be filled completely by setRandom" in {
-      grid1.createRandom(1).solved must beTrue
+      grid1.createRandom(1)
+      grid1.solved must beTrue
     }
     "generate a String of the form\n" +
       "+---+\n" +
@@ -73,7 +78,8 @@ class GridSpec extends Specification  {
       grid1.cell(0, 0).value must be_==(1)
     }
     "if unset hold value 0 " in {
-      grid1.unset(0, 0).cell(0, 0).value must be_==(0)
+      val unset = grid1.unset(0, 0)
+      unset.cell(0, 0).value must be_==(0)
     }
     "if reset hold value 0" in {
       grid1.reset.cell(0, 0).value must be_==(0)
@@ -107,15 +113,16 @@ class GridSpec extends Specification  {
       grid4.solve._2.solved must beTrue
     }
     "solve with Cells created by Random" in {
-      grid4.createRandom(4).solve._2.solved must beTrue
+      grid4.createRandom(4)
+      grid4.solve._2.solved must beTrue
     }
   }
-  "A Grid with Cells that require backtracking to solve" should {
-     var reqBacktrack = new Grid(4).set(0,0,4).set(0,1,3).set(0,2,2).set(0,3,1).set(1,0,2).set(1,1,1).set(1,3,4).set(3,3,3)
-     "solve" in {
-       reqBacktrack.solve._2.solved must beTrue
-     }
-  }  
+//  "A Grid with Cells that require backtracking to solve" should {
+//     var reqBacktrack = new Grid(4).set(0,0,4).set(0,1,3).set(0,2,2).set(0,3,1).set(1,0,2).set(1,1,1).set(1,3,4).set(3,3,3)
+//     "solve" in {
+//       reqBacktrack.solve._2.solved must beTrue
+//     }
+//  }  
 
 
 }

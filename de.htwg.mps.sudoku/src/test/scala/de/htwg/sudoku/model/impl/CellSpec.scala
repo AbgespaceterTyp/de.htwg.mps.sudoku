@@ -1,7 +1,10 @@
 package de.htwg.sudoku.model.impl
  
 import org.specs2.mutable._
+import org.junit.runner.RunWith
+import org.specs2.runner.JUnitRunner
 
+@RunWith(classOf[JUnitRunner])
 class CellSpec extends Specification {
   "A new Cell set to 0 " should {
     val cell = new Cell(0)
@@ -46,8 +49,7 @@ class CellSpec extends Specification {
     
     "not be given until set to given" in {
       cell.isGiven must beFalse
-      cell.given
-      cell.isGiven must beTrue
+      cell.given.isGiven must beTrue
     }
 
     "not show their Candidates" in {

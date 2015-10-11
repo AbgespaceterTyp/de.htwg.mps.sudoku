@@ -31,17 +31,13 @@ class Grid(val cells: Vector[Cell]) extends IGrid{
     } 
     grid
   }
-  def showCandidates(row:Int, col:Int):IGrid = {
-    var grid = this
-    grid = grid.set(row, col, cell(row,col).showCandidates)
-    grid
-  }
+  def showCandidates(row:Int, col:Int):IGrid = set(row, col, cell(row,col).showCandidates)
   def setGiven = {
-    var g = this
+    var grid = this
     for (row <- 0 until size; col<- 0 until size){
-      if (cell(row,col).isSet) g = g.set(row, col, cell(row,col).given) else g = g.set(row, col, cell(row,col).notGiven)
+      if (cell(row,col).isSet) grid = grid.set(row, col, cell(row,col).given) else grid = grid.set(row, col, cell(row,col).notGiven)
     } 
-    g
+    grid
   }
   override def toString = {
     val lineseparator = ("+-" + ("--" * blocknum)) * blocknum + "+\n"

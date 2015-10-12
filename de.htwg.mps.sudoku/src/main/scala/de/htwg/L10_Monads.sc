@@ -53,9 +53,9 @@ object L10_Monads {
 	
 	val pack = new Pack(List(new Bottle, new Bottle, new Bottle, new Bottle))
                                                   //> pack  : de.htwg.L10_Monads.Pack = de.htwg.L10_Monads$$anonfun$main$1$Pack$1
-                                                  //| @45db05b2
+                                                  //| @48507269
 	val crate = new Crate(List(pack, pack))   //> crate  : de.htwg.L10_Monads.Crate = de.htwg.L10_Monads$$anonfun$main$1$Crat
-                                                  //| e$1@4e76fba0
+                                                  //| e$1@3d73d62d
   pack.map(bottle => bottle.cleans)               //>  cleaning... 
                                                   //|  cleaning... 
                                                   //|  cleaning... 
@@ -78,5 +78,6 @@ object L10_Monads {
                                                   //|  cleaning... 
                                                   //|  cleaning... 
                                                   //| res9: List[de.htwg.L10_Monads.Bottle] = List(B, B, B, B, B, B, B, B)
+            
 	
 }

@@ -2,9 +2,9 @@ package de.htwg.sudoku.model.impl
 
 import scala.math.sqrt
 import scala.util.Random
-import de.htwg.sudoku.model.{Grid=>GridTrait}
+import de.htwg.sudoku.model.IGrid
 
-class Grid(cells: Vector[Cell]) extends GridTrait{
+class Grid(val cells: Vector[Cell]) extends IGrid{
   def this(blocksize: Int) = this(Vector.fill(blocksize * blocksize)(new Cell(0)))
 
   val size = sqrt(cells.size).toInt
@@ -18,20 +18,26 @@ class Grid(cells: Vector[Cell]) extends GridTrait{
   def allcols = (0 until size).map(i => cols(i))
   def blocks(block: Int) = new House((for (row <- 0 until (size); col <- 0 until size; if blockAt(row, col) == block) yield cell(row, col)).asInstanceOf[Vector[Cell]])
   def allblocks = (0 until size).map(i => blocks(i))
-  def set(row: Int, col: Int, value: Int):Grid = new Grid(cells.updated(size * row + col, new Cell(value)))
-  def unset(row: Int, col: Int):Grid = set(row, col, 0)
+  def set(row: Int, col: Int, value: Int):Grid = new Grid( cells.updated(size * row + col, new Cell(value)))
+  def set(row: Int, col: Int, cell: Cell):Grid = new Grid( cells.updated(size * row + col, cell))
+  def unset(row: Int, col: Int) = set(row, col, 0)
   def available(row: Int, col: Int):Set[Int] = if (cell(row, col).isSet) Set.empty else (1 to size).toSet -- rows(row).toIntSet -- cols(col).toIntSet -- blocks(blockAt(row, col)).toIntSet
   def options = for (row <- 0 until size; col <- 0 until size) yield available(row, col)
   def valid = allrows.forall(house => house.valid) && allcols.forall(house => house.valid) && allblocks.forall(house => house.valid)
-  def highlight(index:Int) = {
+  def highlight(index:Int):IGrid = {
+    var grid = this
     for (row <- 0 until size; col<- 0 until size){
-      if (available(row,col).contains(index)) cell(row,col).highlight else cell(row,col).unhighlight
+      if (available(row,col).contains(index)) grid = grid.set(row, col, cell(row,col).highlight) else grid = grid.set( row, col, cell(row,col).unhighlight)
     } 
+    grid
   }
+  def showCandidates(row:Int, col:Int):IGrid = set(row, col, cell(row,col).showCandidates)
   def setGiven = {
+    var grid = this
     for (row <- 0 until size; col<- 0 until size){
-      if (cell(row,col).isSet) cell(row,col).given else cell(row,col).notGiven
+      if (cell(row,col).isSet) grid = grid.set(row, col, cell(row,col).given) else grid = grid.set(row, col, cell(row,col).notGiven)
     } 
+    grid
   }
   override def toString = {
     val lineseparator = ("+-" + ("--" * blocknum)) * blocknum + "+\n"
@@ -43,35 +49,36 @@ class Grid(cells: Vector[Cell]) extends GridTrait{
     box
   }
   def reset = new Grid(size);
-  def createRandom(num: Int): Grid = {
-    def setRandom = {
-      val r = Random.nextInt(size)
-      val c = Random.nextInt(size)
-      val avail = available(r, c).toIndexedSeq
-      val numAvail = avail.size
-      if (numAvail > 0) {
-        val v = avail(Random.nextInt(numAvail))
-        set(r, c, v)
-      } else this 
-    }
-    num match {
-      case 1 => setRandom
-      case _ => setRandom.createRandom(num - 1)
-    }
+  def createRandom(num: Int):Grid = {
+    var grid = new Grid(this.size)
+    for (index <-1 to num) {grid = grid.setRandomCell}
+    grid
+  }
+  
+  private def setRandomCell = {
+      val row = Random.nextInt(size)
+      val column = Random.nextInt(size)
+      val availableValueSet = available(row, column).toIndexedSeq
+      val numAvailableValues = availableValueSet.size
+      if (numAvailableValues > 0) {
+        val value = availableValueSet(Random.nextInt(numAvailableValues))
+        set(row, column, value)
+      } else this
   }
 
   def solved = cells.forall(cell => cell.isSet)
   def unsolvable = options.isEmpty
-  def solve: Pair[Boolean, Grid] =  solve(0) 
-  def solve(index: Int): Pair[Boolean, Grid] = {
+  def solve: Tuple2[Boolean, Grid] =  solve(0) 
+  def solve(index: Int): Tuple2[Boolean, Grid] = {
     if (solved) return (true, this) else if (unsolvable) return (false, this) else {
       val (row, col) = indexToRowCol(index)
       if (cell(row, col).isSet) return solve(index + 1) else {
         val iter = Random.shuffle(available(row, col).toList).iterator
-        var res: Pair[Boolean, Grid] = (false, this)
+        var res: Tuple2[Boolean, Grid] = (false, this)
         if (iter.hasNext) {
           for (v <- iter) {
-            res = set(row, col, v).solve(index + 1)
+            var g = set(row, col, v)
+            res = g.solve(index + 1)
             if (res._1 == true) return res
           }
         }
@@ -79,8 +86,7 @@ class Grid(cells: Vector[Cell]) extends GridTrait{
       }
     }
   }
-  def parseFromString(string: String) = {
-
+  def parseFromString(string: String):Grid = {
     val listChar = string.toList.filter(char => ('0' to '9').contains(char))
     var listInt = listChar.map(c => c.toString.toInt)
     var g = new Grid(sqrt(listInt.size).toInt)

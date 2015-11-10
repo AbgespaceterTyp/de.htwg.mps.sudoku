@@ -5,6 +5,7 @@ object L01_Expressions {
   23 % 5                                          //> res2: Int(3) = 3
   3.5 * 9.4 + 6 / 4                               //> res3: Double = 33.9
   
+  
   // Simple String operations
   "Hello " + "World"                              //> res4: String("Hello World") = Hello World
   println("Hello " + "World")                     //> Hello World

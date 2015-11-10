@@ -3,7 +3,8 @@ object L01_Expressions {;import org.scalaide.worksheet.runtime.library.Worksheet
   1 + 2 + 3;System.out.println("""res0: Int = """ + $show(res$0));$skip(18); val res$1 = 
   3 + 4 * (2 - 3);System.out.println("""res1: Int = """ + $show(res$1));$skip(9); val res$2 = 
   23 % 5;System.out.println("""res2: Int(3) = """ + $show(res$2));$skip(20); val res$3 = 
-  3.5 * 9.4 + 6 / 4;System.out.println("""res3: Double = """ + $show(res$3));$skip(54); val res$4 = 
+  3.5 * 9.4 + 6 / 4;System.out.println("""res3: Double = """ + $show(res$3));$skip(57); val res$4 = 
+  
   
   // Simple String operations
   "Hello " + "World";System.out.println("""res4: String("Hello World") = """ + $show(res$4));$skip(30); 

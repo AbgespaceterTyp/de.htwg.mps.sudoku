@@ -1,6 +1,6 @@
 package de.htwg.sudoku.aview.tui
 
-import de.htwg.sudoku.model.Grid
+import de.htwg.sudoku.model.IGrid
 import de.htwg.sudoku.controller.SudokuController
 import de.htwg.sudoku.controller.CellChanged
 import de.htwg.sudoku.controller.GridSizeChanged

@@ -1,8 +1,11 @@
 package de.htwg.sudoku.model.impl
 
 import org.specs2.mutable._
+import org.junit.runner.RunWith
+import org.specs2.runner.JUnitRunner
 
-class HouseSpec extends SpecificationWithJUnit {
+@RunWith(classOf[JUnitRunner])
+class HouseSpec extends Specification {
 
   "A new House with zero Cells" should {
     val house = new House(Vector())

@@ -4,7 +4,7 @@ object functional {
   def f(x: Int) = x + 1                           //> f: (x: Int)Int
   f(5)                                            //> res0: Int = 6
   f{5}                                            //> res1: Int = 6
-
+  
   //Anonymous Functions or Function literals
 
   (x: Int) => x + 1                               //> res2: Int => Int = <function1>

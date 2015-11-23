@@ -3,6 +3,7 @@
   <classpathentry output="target/scala-2.11/classes" kind="src" path="src/main/java"/>
   <classpathentry output="target/scala-2.11/test-classes" kind="src" path="src/test/scala"/>
   <classpathentry output="target/scala-2.11/test-classes" kind="src" path="src/test/java"/>
+  <classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
   <classpathentry kind="lib" path="/Users/markoboger/.ivy2/cache/org.specs2/specs2-junit_2.11/jars/specs2-junit_2.11-2.4.14.jar"/>
   <classpathentry kind="lib" path="/Users/markoboger/.ivy2/cache/org.specs2/specs2-core_2.11/jars/specs2-core_2.11-2.4.14.jar"/>
   <classpathentry kind="lib" path="/Users/markoboger/.ivy2/cache/org.specs2/specs2-matcher_2.11/jars/specs2-matcher_2.11-2.4.14.jar"/>
@@ -16,9 +17,9 @@
   <classpathentry kind="lib" path="/Users/markoboger/.ivy2/cache/org.hamcrest/hamcrest-core/jars/hamcrest-core-1.3.jar"/>
   <classpathentry kind="lib" path="/Users/markoboger/.ivy2/cache/org.scala-lang/scala-swing/jars/scala-swing-2.11.0-M7.jar"/>
   <classpathentry kind="lib" path="/Users/markoboger/.ivy2/cache/org.spire-math/spire_2.11/jars/spire_2.11-0.11.0.jar"/>
-  <classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
   <classpathentry kind="lib" path="/Users/markoboger/.ivy2/cache/org.spire-math/spire-macros_2.11/jars/spire-macros_2.11-0.11.0.jar"/>
   <classpathentry kind="lib" path="/Users/markoboger/.ivy2/cache/org.typelevel/machinist_2.11/jars/machinist_2.11-0.4.1.jar"/>
+  <classpathentry kind="lib" path="/Users/markoboger/Documents/TypesafeActivator/activator-dist-1.3.6/repository/org.scalatest/scalatest_2.11/2.2.4/bundles/scalatest_2.11.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="output" path="bin"/>
 </classpath>

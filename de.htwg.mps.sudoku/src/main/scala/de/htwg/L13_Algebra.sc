@@ -33,5 +33,5 @@ object L13_Algebra {
   euclidGcd(42, 96)                               //> res2: Int = 6
 	euclidGcd(42L, 96L)                       //> res3: Long = 6
 	euclidGcd(BigInt(42), BigInt(96))         //> res4: scala.math.BigInt = 6
-	
+
 }

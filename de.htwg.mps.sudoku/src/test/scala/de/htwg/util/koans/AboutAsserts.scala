@@ -17,13 +17,13 @@ class AboutAsserts extends KoanSuite with Matchers {
   }
 
   koan("true and false values can be compared with should matchers") {
-    true should be(__) // should be true
+    true should be(true) // should be true
   }
 
   koan("booleans in asserts can test equality") {
     val v1 = 4
     val v2 = 4
-    assert(v1 === __)
+    assert(v1 === 4)
   }
 
   koan("sometimes we expect you to fill in the values") {

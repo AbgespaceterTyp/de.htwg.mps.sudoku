@@ -4,7 +4,7 @@ import scala.math.sqrt
 import scala.util.Random
 import de.htwg.sudoku.model.IGrid
 
-class Grid(val cells: Vector[Cell]) extends IGrid{
+case class Grid(val cells: Vector[Cell]) extends IGrid{
   def this(blocksize: Int) = this(Vector.fill(blocksize * blocksize)(new Cell(0)))
 
   val size = sqrt(cells.size).toInt
@@ -18,8 +18,8 @@ class Grid(val cells: Vector[Cell]) extends IGrid{
   def allcols = (0 until size).map(i => cols(i))
   def blocks(block: Int) = new House((for (row <- 0 until (size); col <- 0 until size; if blockAt(row, col) == block) yield cell(row, col)).asInstanceOf[Vector[Cell]])
   def allblocks = (0 until size).map(i => blocks(i))
-  def set(row: Int, col: Int, value: Int):Grid = new Grid( cells.updated(size * row + col, new Cell(value)))
-  def set(row: Int, col: Int, cell: Cell):Grid = new Grid( cells.updated(size * row + col, cell))
+  def set(row: Int, col: Int, value: Int):Grid = copy( cells.updated(size * row + col, new Cell(value)))
+  def set(row: Int, col: Int, cell: Cell):Grid = copy( cells.updated(size * row + col, cell))
   def unset(row: Int, col: Int) = set(row, col, 0)
   def available(row: Int, col: Int):Set[Int] = if (cell(row, col).isSet) Set.empty else (1 to size).toSet -- rows(row).toIntSet -- cols(col).toIntSet -- blocks(blockAt(row, col)).toIntSet
   def options = for (row <- 0 until size; col <- 0 until size) yield available(row, col)

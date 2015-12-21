@@ -16,4 +16,4 @@ libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
 
 libraryDependencies += "org.scala-lang" % "scala-swing" % "2.11+"
 
-libraryDependencies += "org.spire-math" %% "spire" % "0.11.0"
+libraryDependencies += "com.escalatesoft.subcut" %% "subcut" % "2.1"

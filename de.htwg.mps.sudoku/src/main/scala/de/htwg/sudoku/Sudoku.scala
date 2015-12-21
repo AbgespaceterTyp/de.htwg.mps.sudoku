@@ -5,6 +5,8 @@ import de.htwg.sudoku.controller.SudokuController
 import de.htwg.sudoku.aview.tui.Tui
 import de.htwg.sudoku.aview.swing.SwingGui
 
+import scala.io.StdIn._
+
 object Sudoku {
   val controller = new SudokuController(new Grid(9))
   val tui = new Tui(controller)

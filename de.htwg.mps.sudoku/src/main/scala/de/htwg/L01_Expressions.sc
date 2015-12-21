@@ -1,6 +1,6 @@
 object L01_Expressions {
   // Simple Expressions
-  1 + 2 + 3                                       //> res0: Int = 6
+  1 + 2 + 3 + 4                                   //> res0: Int = 10
   3 + 4 * (2 - 3)                                 //> res1: Int = -1
   23 % 5                                          //> res2: Int(3) = 3
   3.5 * 9.4 + 6 / 4                               //> res3: Double = 33.9

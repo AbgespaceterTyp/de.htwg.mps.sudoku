@@ -1,7 +1,8 @@
 package de.htwg
 
 object L10_Monads {;import org.scalaide.worksheet.runtime.library.WorksheetSupport._; def main(args: Array[String])=$execute{;$skip(80); 
-  println("Welcome to the Scala worksheet");$skip(32); 
+  println("Welcome to the Scala worksheet");$skip(35); 
+  
   
   def isEven(x:Int) = x%2==0;System.out.println("""isEven: (x: Int)Boolean""");$skip(78); val res$0 = 
   
@@ -52,13 +53,13 @@ object L10_Monads {;import org.scalaide.worksheet.runtime.library.WorksheetSuppo
 	};System.out.println("""res6: List[Int] = """ + $show(res$6));$skip(586); 
 	
 	val pack = new Pack(List(new Bottle, new Bottle, new Bottle, new Bottle));System.out.println("""pack  : de.htwg.L10_Monads.Pack = """ + $show(pack ));$skip(41); 
-	val crate = new Crate(List(pack, pack));System.out.println("""crate  : de.htwg.L10_Monads.Crate = """ + $show(crate ));$skip(36); val res$7 = 
-  pack.map(bottle => bottle.cleans);System.out.println("""res7: <error> = """ + $show(res$7));$skip(53); val res$8 = 
+	val crate = new Crate(List(pack, pack));System.out.println("""crate  : de.htwg.L10_Monads.Crate = """ + $show(crate ));$skip(37); val res$7 = 
+  pack.map(bottle => bottle.consume);System.out.println("""res7: List[de.htwg.L10_Monads.Bottle] = """ + $show(res$7));$skip(54); val res$8 = 
 	
 
-	for (bottle <- pack.bottles) yield bottle.cleans;System.out.println("""res8: List[Nothing] = """ + $show(res$8));$skip(65); val res$9 = 
+	for (bottle <- pack.bottles) yield bottle.consume;System.out.println("""res8: List[de.htwg.L10_Monads.Bottle] = """ + $show(res$8));$skip(66); val res$9 = 
   for (pack <- crate;
-       bottle <- pack) yield bottle.cleans;System.out.println("""res9: <error> = """ + $show(res$9));$skip(51); val res$10 = 
+       bottle <- pack) yield bottle.consume;System.out.println("""res9: List[de.htwg.L10_Monads.Bottle] = """ + $show(res$9));$skip(51); val res$10 = 
             
 
   pack.map(bottle => bottle.consume);System.out.println("""res10: List[de.htwg.L10_Monads.Bottle] = """ + $show(res$10));$skip(53); val res$11 = 

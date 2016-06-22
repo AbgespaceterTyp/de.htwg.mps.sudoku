@@ -5,7 +5,7 @@ import scala.util.Random
 import de.htwg.sudoku.model.IGrid
 import com.escalatesoft.subcut.inject._
 
-case class Grid(val cells: Vector[Cell])(implicit val bindingModule: BindingModule) extends IGrid with Injectable{
+case class Grid(val cells: Vector[Cell]) extends IGrid {
   def this(blocksize: Int) = this(Vector.fill(blocksize * blocksize)(new Cell(0)))
 
   val size = sqrt(cells.size).toInt

@@ -5,7 +5,7 @@ import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-class GridSpec extends Specification  {
+class GridSpec extends Specification {
 
   "A new Grid with 1 empty Cell" should {
     val cell0 = new Cell(0)
@@ -38,8 +38,8 @@ class GridSpec extends Specification  {
       }
     "highlight its cell" in {
       cell0.isHighlighted must beFalse
-      val grid3=grid1.highlight(1)
-      grid3.cell(0,0).isHighlighted must beTrue
+      val grid3 = grid1.highlight(1)
+      grid3.cell(0, 0).isHighlighted must beTrue
     }
   }
   "A new Grid with 1 filled Cell" should {
@@ -117,12 +117,11 @@ class GridSpec extends Specification  {
       grid4.solve._2.solved must beTrue
     }
   }
-//  "A Grid with Cells that require backtracking to solve" should {
-//     var reqBacktrack = new Grid(4).set(0,0,4).set(0,1,3).set(0,2,2).set(0,3,1).set(1,0,2).set(1,1,1).set(1,3,4).set(3,3,3)
-//     "solve" in {
-//       reqBacktrack.solve._2.solved must beTrue
-//     }
-//  }  
-
+  //  "A Grid with Cells that require backtracking to solve" should {
+  //     var reqBacktrack = new Grid(4).set(0,0,4).set(0,1,3).set(0,2,2).set(0,3,1).set(1,0,2).set(1,1,1).set(1,3,4).set(3,3,3)
+  //     "solve" in {
+  //       reqBacktrack.solve._2.solved must beTrue
+  //     }
+  //  }
 
 }

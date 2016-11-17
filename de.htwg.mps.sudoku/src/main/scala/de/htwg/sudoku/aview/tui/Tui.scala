@@ -14,7 +14,7 @@ class Tui(var controller: SudokuController) extends Reactor {
   printTui
   reactions += {
     case e: GridSizeChanged => printTui
-    case e: CellChanged => printTui
+    case e: CellChanged     => printTui
   }
   def update = printTui
   def printTui = {
@@ -46,7 +46,7 @@ class Tui(var controller: SudokuController) extends Reactor {
             println("(" + row + ", " + column + ") = " + controller.cell(row, column).toString + " " + controller.available(row, column).toString)
           }
           case highlight :: Nil => controller.highlight(highlight)
-          case _ => println("False Input!!!")
+          case _                => println("False Input!!!")
         }
       }
     }

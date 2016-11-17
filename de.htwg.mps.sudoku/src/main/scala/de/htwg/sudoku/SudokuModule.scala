@@ -5,10 +5,10 @@ import de.htwg.sudoku.model.IGrid
 
 object GridSize extends BindingId
 
-object SudokuModule extends NewBindingModule (module => {
+object SudokuModule extends NewBindingModule(module => {
   import module._
-  
- // bind[Int] idBy GridSize to 9  
-  bind[IGrid] to newInstanceOf [de.htwg.sudoku.model.impl.Grid]
-  
+
+  // bind[Int] idBy GridSize to 9
+  bind[IGrid] to newInstanceOf[de.htwg.sudoku.model.impl.Grid]
+
 })

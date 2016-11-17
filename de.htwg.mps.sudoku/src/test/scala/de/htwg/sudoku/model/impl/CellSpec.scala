@@ -1,5 +1,5 @@
 package de.htwg.sudoku.model.impl
- 
+
 import org.specs2.mutable._
 import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
@@ -8,15 +8,15 @@ import org.specs2.runner.JUnitRunner
 class CellSpec extends Specification {
   "A new Cell set to 0 " should {
     val cell = new Cell(0)
-    
+
     "have value 0" in {
       cell.value must be_==(0)
     }
-     
+
     "be not set" in {
       cell.isSet must beFalse
     }
-    
+
     "not be given even if set to given" in {
       cell.isGiven must beFalse
       cell.given
@@ -26,7 +26,7 @@ class CellSpec extends Specification {
     "not show their Candidates" in {
       cell.isShowingCandidates must beFalse
     }
-    
+
     "generate a String of the form ' '" in {
       cell.toString must be_==(" ")
     }
@@ -35,18 +35,18 @@ class CellSpec extends Specification {
       (cell == 0) must beTrue
     }
   }
-  
+
   "A new Cell set to 2 " should {
     val cell = new Cell(2)
-    
+
     "have value 2" in {
       cell.value must be_==(2)
     }
-     
+
     "be set" in {
       cell.isSet must beTrue
     }
-    
+
     "not be given until set to given" in {
       cell.isGiven must beFalse
       cell.given.isGiven must beTrue
@@ -55,7 +55,7 @@ class CellSpec extends Specification {
     "not show their Candidates" in {
       cell.isShowingCandidates must beFalse
     }
-    
+
     "generate a String of the form '2'" in {
       cell.toString must be_==("2")
     }

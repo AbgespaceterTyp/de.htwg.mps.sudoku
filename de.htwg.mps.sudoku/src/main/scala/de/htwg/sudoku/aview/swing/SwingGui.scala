@@ -16,7 +16,7 @@ class SwingGui(controller: SudokuController) extends Frame {
 
   def highlightpanel = new FlowPanel {
     contents += new Label("Highlight:")
-    for (index <- 0 to controller.gridSize) {
+    for {index <- 0 to controller.gridSize} {
       val button = Button(if (index == 0) "" else index.toString) {
         controller.highlight(index)
       }
@@ -29,10 +29,16 @@ class SwingGui(controller: SudokuController) extends Frame {
   def gridPanel = new GridPanel(controller.blockSize, controller.blockSize) {
     border = LineBorder(java.awt.Color.BLACK, 2)
     background = java.awt.Color.BLACK
-    for (outerRow <- 0 until controller.blockSize; outerColumn <- 0 until controller.blockSize) {
+    for {
+      outerRow <- 0 until controller.blockSize
+      outerColumn <- 0 until controller.blockSize
+    } {
       contents += new GridPanel(controller.blockSize, controller.blockSize) {
         border = LineBorder(java.awt.Color.BLACK, 2)
-        for (innerRow <- 0 until controller.blockSize; innerColumn <- 0 until controller.blockSize) {
+        for {
+          innerRow <- 0 until controller.blockSize
+          innerColumn <- 0 until controller.blockSize
+        } {
           val x = outerRow * controller.blockSize + innerRow
           val y = outerColumn * controller.blockSize + innerColumn
           val cellPanel = new CellPanel(x, y, controller)
@@ -58,7 +64,7 @@ class SwingGui(controller: SudokuController) extends Frame {
       contents += new MenuItem(Action("Random") { controller.createRandom })
       contents += new MenuItem(Action("Load Easy Game") { controller.parseFromString(fromFile("resources/sudoku_easy.txt").mkString) })
       contents += new MenuItem(Action("Load Medium Game") { controller.parseFromString(fromFile("resources/sudoku_middle.txt").mkString) })
-     contents += new MenuItem(Action("Load Hard Game") { controller.parseFromString(fromFile("resources/sudoku_hard.txt").mkString) })
+      contents += new MenuItem(Action("Load Hard Game") { controller.parseFromString(fromFile("resources/sudoku_hard.txt").mkString) })
       contents += new MenuItem(Action("Quit") { System.exit(0) })
     }
     contents += new Menu("Edit") {
@@ -72,7 +78,7 @@ class SwingGui(controller: SudokuController) extends Frame {
     }
     contents += new Menu("Highlight") {
       mnemonic = Key.H
-      for (index <- 0 to controller.gridSize) {
+      for { index <- 0 to controller.gridSize } {
         contents += new MenuItem(Action(index.toString) { controller.highlight(index) })
       }
     }
@@ -90,7 +96,7 @@ class SwingGui(controller: SudokuController) extends Frame {
 
   reactions += {
     case e: GridSizeChanged => resize(e.newSize)
-    case e: CellChanged => redraw
+    case e: CellChanged     => redraw
   }
 
   def resize(gridSize: Int) = {
@@ -102,9 +108,10 @@ class SwingGui(controller: SudokuController) extends Frame {
     }
   }
   def redraw = {
-    for (row <- 0 until controller.gridSize; column <- 0 until controller.gridSize) {
-      cells(row)(column).redraw
-    }  
+    for {
+      row <- 0 until controller.gridSize
+      column <- 0 until controller.gridSize
+    } cells(row)(column).redraw
     statusline.text = controller.statusText
     repaint
   }

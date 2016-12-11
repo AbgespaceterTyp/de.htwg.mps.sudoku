@@ -14,10 +14,15 @@ class SudokuController(var grid: IGrid) extends Publisher {
   def gridSize = grid.size
   def available(row: Int, col: Int) = grid.available(row, col)
   def cell(row: Int, col: Int) = grid.cell(row, col)
+  def getValue(row:Int, col:Int) = grid.cell(row,col).value
   def highlight(index: Int) = {
     grid = grid.highlight(index)
     publish(new CellChanged)
   }
+  def isGiven(row:Int, col:Int):Boolean = grid.cell(row, col).isGiven
+  def isHighlighted(row:Int, col:Int):Boolean = grid.cell(row, col).isHighlighted
+  def isCandidate(row:Int, col:Int, candidate:Int):Boolean = available(row, col).contains(candidate)
+  def isShowCandidates(row:Int, col:Int):Boolean = grid.cell(row, col).isShowingCandidates
 
   def createRandom = {
     grid = grid.createRandom(grid.size)
